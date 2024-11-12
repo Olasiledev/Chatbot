@@ -4,10 +4,10 @@ import os
 
 app = Flask(__name__)
 
-# Route_student number
+# Route for student number
 @app.route('/', methods=['GET'])
 def student_info():
-    return jsonify({"student_number": "200561609"})
+    return jsonify({"student_number": "200561609 "})
 
 # Webhook route
 @app.route('/webhook', methods=['POST'])
@@ -17,7 +17,7 @@ def webhook():
     intent_name = req.get("queryResult").get("intent").get("displayName")
     joke_type = req.get("queryResult").get("parameters").get("joke_type")
 
-    #response
+    # response
     if intent_name == "Tell a Joke":
         jokes = {
             "math joke": [
@@ -33,7 +33,7 @@ def webhook():
                 "I asked my dog what’s two minus two. He said nothing."
             ]
         }
-        #joke based on joke type
+        # joke based on joke type
         response_text = random.choice(jokes.get(joke_type.lower(), jokes["random joke"]))
     else:
         response_text = "I'm here to assist you!"
@@ -42,4 +42,4 @@ def webhook():
     return jsonify({"fulfillmentText": response_text})
 
 if __name__ == '__main__':
-app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
+    app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
