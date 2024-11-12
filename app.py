@@ -10,7 +10,7 @@ def student_info():
     return jsonify({"student_number": "200561609 "})
 
 # Webhook route
-@app.route('/webhook', methods=['POST'])
+@app.route('/200561609', methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
 
